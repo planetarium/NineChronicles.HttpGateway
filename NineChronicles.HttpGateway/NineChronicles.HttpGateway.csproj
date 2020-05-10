@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bencodex" Version="0.3.0-dev.b31ae43f444580ec35b61f3508f461850e6e1b25" />
+    <PackageReference Include="MagicOnion" Version="3.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../nekoyume-unity/shared/shared.csproj" />
+  </ItemGroup>
+
+
+</Project>
