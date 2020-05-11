@@ -1,20 +1,15 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-
 namespace NineChronicles.HttpGateway
 {
-    public class Program
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
+
+    public static class Program
     {
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
         }
-
-        private static IConfiguration CreateConfiguration(string[] args) =>
-            new ConfigurationBuilder()
-                .AddCommandLine(args)
-                .Build();
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
@@ -24,5 +19,10 @@ namespace NineChronicles.HttpGateway
                         .UseConfiguration(CreateConfiguration(args))
                         .UseStartup<Startup>();
                 });
+
+        private static IConfiguration CreateConfiguration(string[] args) =>
+            new ConfigurationBuilder()
+                .AddCommandLine(args)
+                .Build();
     }
 }

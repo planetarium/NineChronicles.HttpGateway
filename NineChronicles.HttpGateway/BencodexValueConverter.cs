@@ -1,12 +1,12 @@
-using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Bencodex.Types;
-using Boolean = Bencodex.Types.Boolean;
-
 namespace NineChronicles.HttpGateway
 {
-    public class IValueConverter : JsonConverter<IValue>
+    using System;
+    using System.Text.Json;
+    using System.Text.Json.Serialization;
+    using Bencodex.Types;
+    using Boolean = Bencodex.Types.Boolean;
+
+    public class BencodexValueConverter : JsonConverter<IValue>
     {
         public override IValue Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -17,7 +17,7 @@ namespace NineChronicles.HttpGateway
         {
             writer.WriteStartObject();
             writer.WritePropertyName("value");
-            WriteInner(writer, value, options);
+            this.WriteInner(writer, value, options);
             writer.WriteEndObject();
         }
 
@@ -40,12 +40,13 @@ namespace NineChronicles.HttpGateway
                             writer.WritePropertyName(text.Value);
                             break;
                         case Binary binary:
-                            writer.WritePropertyName(ToHex(binary.Value));
+                            writer.WritePropertyName(this.ToHex(binary.Value));
                             break;
                     }
 
-                    WriteInner(writer, pair.Value, options);
+                    this.WriteInner(writer, pair.Value, options);
                 }
+
                 writer.WriteEndObject();
             }
             else if (value is List list)
@@ -53,8 +54,9 @@ namespace NineChronicles.HttpGateway
                 writer.WriteStartArray();
                 foreach (var v in list)
                 {
-                    WriteInner(writer, v, options);
+                    this.WriteInner(writer, v, options);
                 }
+
                 writer.WriteEndArray();
             }
             else if (value is Text text)
@@ -63,7 +65,7 @@ namespace NineChronicles.HttpGateway
             }
             else if (value is Binary binary)
             {
-                writer.WriteStringValue(ToHex(binary.Value));
+                writer.WriteStringValue(this.ToHex(binary.Value));
             }
             else if (value is Null)
             {
@@ -71,7 +73,7 @@ namespace NineChronicles.HttpGateway
             }
             else if (value is Integer integer)
             {
-                writer.WriteNumberValue((long) integer);
+                writer.WriteNumberValue((long)integer);
             }
             else if (value is Boolean boolean)
             {

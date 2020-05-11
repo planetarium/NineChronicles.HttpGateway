@@ -1,26 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Grpc.Core;
-using MagicOnion.Client;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Nekoyume.Shared.Services;
-
 namespace NineChronicles.HttpGateway
 {
+    using Grpc.Core;
+    using MagicOnion.Client;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Nekoyume.Shared.Services;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -36,12 +29,10 @@ namespace NineChronicles.HttpGateway
                     builder =>
                         builder.AllowAnyOrigin()
                             .AllowAnyMethod()
-                            .AllowAnyHeader()
-                )
-            );
+                            .AllowAnyHeader()));
 
-            var rpcServerHost = Configuration.GetValue<string>("rpcServerHost");
-            var rpcServerPort = Configuration.GetValue<int>("rpcServerPort");
+            var rpcServerHost = this.Configuration.GetValue<string>("rpcServerHost");
+            var rpcServerPort = this.Configuration.GetValue<int>("rpcServerPort");
 
             var channel = new Channel(rpcServerHost, rpcServerPort, ChannelCredentials.Insecure);
             var client = MagicOnionClient.Create<IBlockChainService>(channel);
