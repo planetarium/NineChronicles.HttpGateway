@@ -9,7 +9,7 @@
             AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis"
             RuleNamespace="Microsoft.Rules.Managed">
 
-        <!-- -->
+        <!-- XML Comment Analysis Disabled -->
         <Rule Id="SA0001" Action="None" />
         <!-- Copyright -->
         <Rule Id="SA1633" Action="None" />
