@@ -39,6 +39,6 @@ $ dotnet run -- /rpcServerHost=aafd1af9c5cf111ea824802399f8ed0e-1178879563.ap-no
 ## Docker Build
 
 ```bash
-$ docker build -t nekoyume-unity:git-state-webapi-$(git rev-parse HEAD)
+$ docker build . -t 319679068466.dkr.ecr.ap-northeast-2.amazonaws.com/nekoyume-unity:git-state-webapi-$(git rev-parse HEAD)
 ```
 
