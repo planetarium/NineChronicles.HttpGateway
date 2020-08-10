@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../nekoyume-unity/shared/shared.csproj" />
+    <ProjectReference Include="../NineChronicles.RPC.Shared//NineChronicles.RPC.Shared//NineChronicles.RPC.Shared.csproj" />
   </ItemGroup>
 
 
