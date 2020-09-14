@@ -26,24 +26,34 @@
         private IBlockChainService BlockChainService { get; }
 
         [HttpGet("{currency}/{address}")]
-        public async Task<ContentResult> Get(string currency, string address)
+        public async Task<ActionResult> Get(string currency, string address)
         {
-            var codec = new Codec();
-            this.Logger.LogInformation("currency:" + currency);
-            this.Logger.LogInformation("address:" + address);
-            var goldCurrencyStateBytes = await this.BlockChainService.GetState(GoldCurrencyState.Address.ToByteArray());
-            var goldCurrency = new GoldCurrencyState(
-                (Dictionary)codec.Decode(goldCurrencyStateBytes)).Currency;
-            var bytes = await this.BlockChainService.GetBalance(this.ParseHex(address), codec.Encode(goldCurrency.Serialize()));
-            var state = codec.Decode(bytes);
-            return this.Content(
-                JsonSerializer.Serialize(state, new JsonSerializerOptions
-                {
-                    Converters =
+            try
+            {
+                var codec = new Codec();
+                this.Logger.LogInformation("currency:" + currency);
+                this.Logger.LogInformation("address:" + address);
+                var goldCurrencyStateBytes =
+                    await this.BlockChainService.GetState(GoldCurrencyState.Address.ToByteArray());
+                var goldCurrency = new GoldCurrencyState(
+                    (Dictionary)codec.Decode(goldCurrencyStateBytes)).Currency;
+                var bytes = await this.BlockChainService.GetBalance(
+                    this.ParseHex(address),
+                    codec.Encode(goldCurrency.Serialize()));
+                var state = codec.Decode(bytes);
+                return this.Content(
+                    JsonSerializer.Serialize(state, new JsonSerializerOptions
                     {
-                        new BencodexValueConverter(),
-                    },
-                }), "application/json");
+                        Converters =
+                        {
+                            new BencodexValueConverter(),
+                        },
+                    }), "application/json");
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
         private byte[] ParseHex(string hex)
