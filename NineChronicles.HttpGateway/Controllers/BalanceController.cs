@@ -31,8 +31,6 @@
             try
             {
                 var codec = new Codec();
-                this.Logger.LogInformation("currency:" + currency);
-                this.Logger.LogInformation("address:" + address);
                 var goldCurrencyStateBytes =
                     await this.BlockChainService.GetState(GoldCurrencyState.Address.ToByteArray());
                 var goldCurrency = new GoldCurrencyState(
