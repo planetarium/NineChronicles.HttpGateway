@@ -10,14 +10,14 @@ An application to provide HTTP API from NineChronicles RPC server.
 
 ## Dependencies
 
-It imports [planetarium/nekoyume-unity] repository's code as git submodule 
+It imports [planetarium/NineChronicles.RPC.Shared] repository's code as git submodule 
 because it must use RPC client created from code shared with NineChronicles RPC server.
  
 ```bash
 $ git clone --recurse-submodules git@github.com:<username>/<repository>
 ```
 
-[planetarium/nekoyume-unity]: https://github.com/planetarium/nekoyume-unity
+[planetarium/NineChronicles.RPC.Shared]: https://github.com/planetarium/NineChronicles.RPC.Shared
 
 
 ## Build
