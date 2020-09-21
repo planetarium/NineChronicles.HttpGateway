@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bencodex" Version="0.3.0-dev.b31ae43f444580ec35b61f3508f461850e6e1b25" />
+    <PackageReference Include="Lib9c" Version="1.0.0-dev.3fe2ce03657c1494d12cccfe41a032f95f8e2b15" />
     <PackageReference Include="MagicOnion" Version="3.0.9" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.6.1.17183">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
