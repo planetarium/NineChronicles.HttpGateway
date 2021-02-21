@@ -1,3 +1,8 @@
+**ARCHIVED**
+===================
+
+This repository was archived since [NineChronicles.Headless](https://github.com/planetarium/NineChronicles.Headless) started to provide their states as GraphQL API, which provides more better API with strong-typed schema, to guide users to the best way to use states.
+
 # NineChronicles.HttpGateway
 
 ![dotnet-core-version](https://img.shields.io/badge/dotnet-3.1-blue)
